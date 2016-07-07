@@ -1,0 +1,7 @@
+5392
+[33mStarting up http-server, serving [39m[36m.[39m[33m
+Available on:[39m
+[32m  http://127.0.0.1:9090[39m
+Hit CTRL-C to stop the server
+/dev/
+[Thu Jul 07 2016 16:21:03 GMT+0200 (CEST)] "[36mGET[39m [36m/dev/[39m" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
