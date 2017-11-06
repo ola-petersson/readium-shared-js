@@ -546,7 +546,7 @@ function($, _, Class, HighlightHelpers, HighlightGroup) {
         },
 
         _getPaginationOffsets: function() {
-            if (!this.context.paginationInfo) {
+            if (  true /*!this.context.paginationInfo */) {
                 return {
                     top: 0,
                     left: 0
@@ -554,13 +554,13 @@ function($, _, Class, HighlightHelpers, HighlightGroup) {
             }
 
             var offset;
-            if (this.context.isRTL && !this.context.isVerticalWritingMode) {
+            if (this.context.isRTL && !false) {
                 offset = -this.context.paginationInfo().pageOffset;
             } else {
                 offset = this.context.paginationInfo().pageOffset;
             }
 
-            if (this.context.isVerticalWritingMode) {
+            if (false) {
                 return {
                     top: offset,
                     left: 0

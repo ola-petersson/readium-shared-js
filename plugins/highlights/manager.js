@@ -146,6 +146,7 @@ var HighlightsManager = function (proxyObj, options) {
             if (annotationsForView.getCurrentSelectionCFI()) {
                 var annotation = annotationsForView.addSelectionHighlight(
                     id, type, styles, clearSelection);
+                pushPageToInstudy(spines[spine].idref);
                 return new BookmarkData(spines[spine].idref, annotation.CFI);
             }
         }

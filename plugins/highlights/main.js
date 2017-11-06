@@ -10,6 +10,8 @@ define(['readium_js_plugins', 'readium_shared_js/globals', './manager'], functio
             if (!_initialized) {
                 api.plugin.warn('Not initialized!')
             }
+            loadMyHighlights();
+            loadSearchHighlights();
             return _initialized;
         }
 
@@ -235,7 +237,9 @@ define(['readium_js_plugins', 'readium_shared_js/globals', './manager'], functio
         //    self.redrawAnnotations();
         //}, 10, true));
 
-
+        reader.on(ReadiumSDK.Events.PAGINATION_CHANGED, _.debounce(function () {
+            loadMyHighlights(); loadSearchHighlights();
+        }, 10, true));
 
     });
 

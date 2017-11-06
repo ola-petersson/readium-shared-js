@@ -79,10 +79,10 @@ var ReaderView = function (options) {
 
     if (options.el instanceof $) {
         _$el = options.el;
-        console.log("** EL is a jQuery selector:" + options.el.attr('id'));
+        //console.log("** EL is a jQuery selector:" + options.el.attr('id'));
     } else {
         _$el = $(options.el);
-        console.log("** EL is a string:" + _$el.attr('id'));
+        //console.log("** EL is a string:" + _$el.attr('id'));
     }
 
     if (options.iframeLoader) {
@@ -467,8 +467,8 @@ var ReaderView = function (options) {
                     fallback = !self.openContentUrl(pageRequestData.contentRefUrl, pageRequestData.sourceFileHref, self);
                 }
             } catch (err) {
-                console.error("openPageRequest fail: fallback to first page!")
-                console.log(err);
+                //console.error("openPageRequest fail: fallback to first page!")
+                //console.log(err);
                 fallback = true;
             }
         }
@@ -723,13 +723,13 @@ var ReaderView = function (options) {
 
         if (!idref) {
 
-            console.log("idref parameter value missing!");
+            //console.log("idref parameter value missing!");
             return undefined;
         }
 
         var spineItem = _spine.getItemById(idref);
         if (!spineItem) {
-            console.log("Spine item with id " + idref + " not found!");
+            //console.log("Spine item with id " + idref + " not found!");
             return undefined;
         }
 
@@ -991,14 +991,14 @@ var ReaderView = function (options) {
 
         var spineItem = _spine.getItemByHref(hrefPart);
         if (!spineItem) {
-            console.warn('spineItem ' + hrefPart + ' not found');
+            //console.warn('spineItem ' + hrefPart + ' not found');
             // sometimes that happens because spine item's URI gets encoded,
             // yet it's compared with raw strings by `getItemByHref()` -
             // so we try to search with decoded link as well
             var decodedHrefPart = decodeURIComponent(hrefPart);
             spineItem = _spine.getItemByHref(decodedHrefPart);
             if (!spineItem) {
-                console.warn('decoded spineItem ' + decodedHrefPart + ' missing as well');
+                //console.warn('decoded spineItem ' + decodedHrefPart + ' missing as well');
                 return false;
             }
         }
@@ -1041,7 +1041,7 @@ var ReaderView = function (options) {
         if (!DEBUG) return;
             
         var paginationInfo = this.getPaginationInfo();
-        console.log(JSON.stringify(paginationInfo));
+        //console.log(JSON.stringify(paginationInfo));
         
         if (paginationInfo.isFixedLayout) return;
     
@@ -1053,19 +1053,19 @@ var ReaderView = function (options) {
         }
         
         try {
-            console.log(cfi);
+            //console.log(cfi);
             
             var range = this.getDomRangeFromRangeCfi(cfi);
-            console.log(range);
+            //console.log(range);
             
             var res = ReadiumSDK._DEBUG_CfiNavigationLogic.drawDebugOverlayFromDomRange(range);
-            console.log(res);
+            //console.log(res);
         
             var cfiFirst = ReadiumSDK.reader.getFirstVisibleCfi();
-            console.log(cfiFirst);
+            //console.log(cfiFirst);
             
             var cfiLast  = ReadiumSDK.reader.getLastVisibleCfi();
-            console.log(cfiLast);
+            //console.log(cfiLast);
             
         } catch (error) {
             //ignore

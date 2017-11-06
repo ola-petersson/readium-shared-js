@@ -371,10 +371,10 @@ function($, _, Class, TextLineInferrer, HighlightView, HighlightBorderView, High
                 var scale = calculateScale();
                 var mouseIsInside = false;
 
-                var x = e.pageX;
-                var y = e.pageY;
+                var x = e.originalEvent.pageX;
+                var y = e.originalEvent.pageY;
 
-                if (e.type === 'touchend') {
+                if (e.originalEvent.type === 'touchend') {
                     var lastTouch = _.last(e.originalEvent.changedTouches);
                     x = lastTouch.pageX;
                     y = lastTouch.pageY;
@@ -390,8 +390,8 @@ function($, _, Class, TextLineInferrer, HighlightView, HighlightBorderView, High
                     if (pointRectangleIntersection(point, rect)) {
                         mouseIsInside = true;
                         // if event is "click" and there is an active selection
-                        if (e.type === "click") {
-                            var sel = e.target.ownerDocument.getSelection();
+                        if (e.originalEvent.type === "click") {
+                            var sel = e.originalEvent.target.ownerDocument.getSelection();
                             // had to add this check to make sure that rangeCount is not 0
                             if (sel && sel.rangeCount && !sel.getRangeAt(0).collapsed) {
                                 //do not trigger a click when there is an active selection
@@ -399,24 +399,24 @@ function($, _, Class, TextLineInferrer, HighlightView, HighlightBorderView, High
                             }
                         }
 
-                        var isTouchEvent = e.type.indexOf('touch') !== -1;
+                        var isTouchEvent = e.originalEvent.type.indexOf('touch') !== -1;
 
                         if (isTouchEvent) {
                             // call "normal" event handler for HL group to touch capable devices
-                            that.onHighlightEvent(e, e.type);
+                            that.onHighlightEvent(e.originalEvent, e.originalEvent.type);
                         }
 
                         // if this is the first time we are mouse entering in the area
                         if (!mouseEntered) {
                             // regardless of the actual event type we want highlightGroupCallback process "mouseenter"
-                            that.onHighlightEvent(e, "mouseenter");
+                            that.onHighlightEvent(e.originalEvent, "mouseenter");
 
                             // set flag indicating that we are in HL group confines
                             mouseEntered = true;
                             return;
                         } else if (!isTouchEvent) {
                             // call "normal" event handler for HL group to desktop devices
-                            that.onHighlightEvent(e, e.type);
+                            that.onHighlightEvent(e.originalEvent, e.originalEvent.type);
                         }
                     }
                 });
@@ -424,7 +424,7 @@ function($, _, Class, TextLineInferrer, HighlightView, HighlightBorderView, High
                 if (!mouseIsInside && mouseEntered) {
                     // set flag indicating that we left HL group confines
                     mouseEntered = false;
-                    that.onHighlightEvent(e, "mouseleave");
+                    that.onHighlightEvent(e.originalEvent, "mouseleave");
                 }
             };
             that.boundHighlightElement = $html;

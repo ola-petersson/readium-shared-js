@@ -14,13 +14,13 @@
 //'text!empty:'
 define(['./globals', 'jquery', 'console_shim', 'es6-collections', 'eventEmitter', 'URIjs', 'readium_cfi_js', 'readium_js_plugins'], function (Globals, $, console_shim, es6collections, EventEmitter, URI, epubCfi, PluginsController) {
 
-    console.log("Globals...");
+    //console.log("Globals...");
 
     if (window["ReadiumSDK"]) {
-        console.log("ReadiumSDK extend.");
+        //console.log("ReadiumSDK extend.");
         $.extend(Globals, window.ReadiumSDK);
     } else {
-        console.log("ReadiumSDK set.");
+        //console.log("ReadiumSDK set.");
     }
 
     window.ReadiumSDK = Globals;
@@ -63,10 +63,10 @@ define(['./globals', 'jquery', 'console_shim', 'es6-collections', 'eventEmitter'
     if (window._RJS_isBrowser) {
         // If under a browser env and using RequireJS, dynamically require all plugins
         var pluginsList = window._RJS_pluginsList;
-        console.log("Plugins included: ", pluginsList.map(function(v) {
+        //console.log("Plugins included: ", pluginsList.map(function(v) {
             // To stay consistent with bundled output
-            return v.replace('readium_plugin_', '');
-        }));
+        //    return v.replace('readium_plugin_', '');
+        //}));
 
         require(pluginsList);
     } else {
@@ -74,7 +74,7 @@ define(['./globals', 'jquery', 'console_shim', 'es6-collections', 'eventEmitter'
         setTimeout(function() {
             // Assume that in the next callback all the plugins have been registered
             var pluginsList = Object.keys(PluginsController.getLoadedPlugins());
-            console.log("Plugins included: ", pluginsList);
+            //console.log("Plugins included: ", pluginsList);
         }, 0);
     }
     // Plugins bootstrapping ends
