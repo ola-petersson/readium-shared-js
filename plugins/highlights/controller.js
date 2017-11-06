@@ -546,6 +546,12 @@ function($, _, Class, HighlightHelpers, HighlightGroup) {
         },
 
         _getPaginationOffsets: function() {
+            return {
+                top: 0,
+                left: 0
+            }
+
+            
             if (  true /*!this.context.paginationInfo */) {
                 return {
                     top: 0,
