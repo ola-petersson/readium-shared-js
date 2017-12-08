@@ -121,13 +121,14 @@ var ReaderView = function (options) {
                 createdView = new FixedView(options, self);
                 break;
             case ReaderView.VIEW_TYPE_SCROLLED_DOC:
-                createdView = new ScrollView(options, false, self);
+                createdView = new ScrollView(options, true, self);   
                 break;
             case ReaderView.VIEW_TYPE_SCROLLED_CONTINUOUS:
                 createdView = new ScrollView(options, true, self);
                 break;
             default:
                 createdView = new ReflowableView(options, self);
+                //createdView = new ScrollView(options, true, self);
                 break;
         }
 
@@ -173,6 +174,10 @@ var ReaderView = function (options) {
 
         //check settings
         if (_viewerSettings.scroll == "scroll-doc") {
+            //is fixed layout ignore flow
+            if (spineItem.isFixedLayout()) {
+                return ReaderView.VIEW_TYPE_FIXED;
+            }
             return ReaderView.VIEW_TYPE_SCROLLED_DOC;
         }
 
